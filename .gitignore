@@ -1,1 +1,5 @@
 /SemanticValidation-core/target/
+/SemanticValidation-ejb/target/
+/SemanticValidation-web/target/
+/SemanticValidation-ear/target/
+/SemanticValidation-jaxrs/target/
