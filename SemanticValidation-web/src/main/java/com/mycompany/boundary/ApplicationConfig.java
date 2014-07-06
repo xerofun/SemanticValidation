@@ -1,9 +1,9 @@
 package com.mycompany.boundary;
 
+import com.mycompany.semanticvalidation.jaxrs.JacksonBeanValidationFeature;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
  *
@@ -18,7 +18,8 @@ public class ApplicationConfig extends Application
     {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
         addRestResourceClasses(resources);
-        resources.add(JacksonFeature.class);
+//        resources.add(JacksonFeature.class);
+        resources.add(JacksonBeanValidationFeature.class);
         return resources;
     }
 

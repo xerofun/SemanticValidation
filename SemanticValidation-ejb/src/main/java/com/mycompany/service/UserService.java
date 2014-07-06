@@ -22,24 +22,6 @@ public class UserService implements UserServiceLocal
     
     @Resource
     private javax.transaction.UserTransaction utx;
-
-    
-    public void persist(Object object)
-    {
-        try
-        {
-            utx.begin();
-            em.persist(object);
-            utx.commit();
-        }
-        catch (Exception e)
-        {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            throw new RuntimeException(e);
-        }
-    }
-
-    
     
     /**
      * Returns all the {@link User} objects from the database
@@ -53,8 +35,14 @@ public class UserService implements UserServiceLocal
     }
 
     @Override
+    public User getUser(final long id)
+    {
+        return em.find(User.class, id);
+    }
+    
+    @Override
     public void createUser(final User user)
     {
-        persist(user);
+        em.persist(user);
     }
 }

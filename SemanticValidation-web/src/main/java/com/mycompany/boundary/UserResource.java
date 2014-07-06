@@ -2,6 +2,7 @@ package com.mycompany.boundary;
 
 import com.mycompany.entities.User;
 import com.mycompany.service.UserServiceLocal;
+import java.net.URI;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.ws.rs.PathParam;
 
 /**
  * REST Web Service
@@ -25,7 +27,7 @@ public class UserResource
     private UserServiceLocal userService;
 
     @Context
-    private UriInfo context;
+    private UriInfo uriInfo;
 
     /**
      * Creates a new instance of UserResource
@@ -41,12 +43,25 @@ public class UserResource
     {
         return Response.ok(userService.getUsers()).build();
     }
+    
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("id") final long id)
+    {
+        return Response.ok(userService.getUser(id)).build();
+    }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createUser(User user)
+    public Response createUser(User user)
     {
         userService.createUser(user);
+
+        // Build URI to newly created resource
+        URI userURI = uriInfo.getRequestUriBuilder().path("{id}").build(user.getId());
+        
+        return Response.created(userURI).build();
     }
     
     

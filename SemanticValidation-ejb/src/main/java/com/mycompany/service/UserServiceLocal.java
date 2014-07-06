@@ -14,4 +14,6 @@ public interface UserServiceLocal
     List<User> getUsers();
 
     void createUser(final User parameter);
+
+    User getUser(final long id);
 }
