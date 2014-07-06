@@ -2,13 +2,15 @@ package com.mycompany.boundary;
 
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
  *
  * @author Brian
  */
 @ApplicationPath("webresources") 
-public class ApplicationConfig extends javax.ws.rs.core.Application 
+public class ApplicationConfig extends Application 
 {
 
     @Override
@@ -16,6 +18,7 @@ public class ApplicationConfig extends javax.ws.rs.core.Application
     {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
         addRestResourceClasses(resources);
+        resources.add(JacksonFeature.class);
         return resources;
     }
 
