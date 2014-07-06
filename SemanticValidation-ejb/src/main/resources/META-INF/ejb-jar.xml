@@ -1,0 +1,14 @@
+<ejb-jar version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+    <!-- Solely needed because Weblogic refuses to register local interfaces with JNDI, Gee Thanks! -->
+    <enterprise-beans>
+        <session>
+            <ejb-name>UserService</ejb-name>
+            <ejb-class>com.mycompany.service.UserService</ejb-class>
+            <session-type>Stateless</session-type>
+            <ejb-local-ref>
+                <ejb-ref-name>ejb/UserServiceLocal</ejb-ref-name>
+                <local>com.mycompany.service.UserServiceLocal</local>
+            </ejb-local-ref>
+        </session>
+    </enterprise-beans>
+</ejb-jar>

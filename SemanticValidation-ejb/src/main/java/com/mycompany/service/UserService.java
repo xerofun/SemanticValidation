@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UserService implements UserServiceLocal
-{
+{    
     @PersistenceContext(unitName = "com.mycompany_SemanticValidation-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
     
